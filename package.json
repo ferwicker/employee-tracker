@@ -1,0 +1,24 @@
+{
+  "name": "Employee Tracker",
+  "version": "1.0.0",
+  "description": "This command line application allows you to add, view, modify and delete employee records in an organisation.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ferwicker/employee-tracker.git"
+  },
+  "author": "Fer Wicker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ferwicker/employee-tracker/issues"
+  },
+  "homepage": "https://github.com/ferwicker/employee-tracker#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^7.3.3",
+    "mysql": "^2.18.1"
+  }
+}
