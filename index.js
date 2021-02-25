@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 const mysql = require('mysql');
 const consoletable = require('console.table');
+const { createPromptModule } = require('inquirer');
 
 //const createEmployee = require('./util/create');
 
@@ -81,14 +82,68 @@ function createMenu(){
             switch (data.createChoice){
                 case 'Create a new employee':
                     //inquirer questions
-
-                    createEmployee('Fer', 'Wicker', 'reservations', '1');
+                    inquirer
+                        .prompt([
+                            {
+                                type: 'input',
+                                message: 'New employee first name:',
+                                name: 'first_name'
+                            },
+                            {
+                                type: 'input',
+                                message: 'New employee last name:',
+                                name: 'last_name'
+                            },
+                            {
+                                type: 'input',
+                                message: 'New employee role:',
+                                name: 'role_name'
+                            },
+                            {
+                                type: 'input',
+                                message: 'New employee manager id:',
+                                name: 'manager_id'
+                            }
+                        ]) .then((data) => {
+                            createEmployee(`${data.first_name}`, `${data.last_name}`, `${data.role_name}`, `${data.manager_id}`);
+                        });
                     break;
                 case 'Create a new role':
                     console.log('Create new role.');
+                        //inquirer questions
+                        inquirer
+                            .prompt([
+                                {
+                                    type: 'input',
+                                    message: 'New role name:',
+                                    name: 'role_name'
+                                },
+                                {
+                                    type: 'input',
+                                    message: 'New role salary:',
+                                    name: 'salary'
+                                },
+                                {
+                                    type: 'input',
+                                    message: 'Department ID:',
+                                    name: 'department_id'
+                                }
+                            ]) .then ((data) => {
+                                createRole(data.role_name, data.salary, data.department_id);
+                            })
                     break;
                 case 'Create a new department':
-                    console.log('Create new department.');
+                    //inquirer questions
+                    inquirer
+                        .prompt([
+                            {
+                                type: 'input',
+                                message: 'New department name:',
+                                name: 'department_name'
+                            }
+                        ]) .then ((data) => {
+                            createDepartment(data.department_name);
+                        })
                     break;
                 case '<--Back to main menu':
                     mainMenu();
@@ -190,7 +245,6 @@ function createEmployee(first_name, last_name, role, manager_id){
         } else{ // if input role does not exist
             role_id = 0;
         }
-        
         // insert new employee
         connection.query(
             `INSERT INTO employees(first_name, last_name, role_id, manager_id) VALUES ('${first_name}', '${last_name}', '${role_id}', '${manager_id}');`, (e, res) => {
@@ -205,19 +259,40 @@ function createEmployee(first_name, last_name, role, manager_id){
         });
 }
 
+//create role
+function createRole(role_name, salary, department_id){
+        salarynum = parseInt(salary);
+        // insert new role
+        connection.query(
+            `INSERT INTO roles(role_name, salary, department_id) VALUES ('${role_name}', '${salarynum}', '${department_id}');`, (e, res) => {
+            if(e) throw e;
+            // show result here
+            console.log(`New role added: ${role_name}`);
+            backMenu();
+            });
+}
+
+//create department
+function createDepartment(department_name){
+    // insert new department
+    connection.query(
+        `INSERT INTO departments (department_name) VALUES ('${department_name}');`, (e, res) => {
+        if(e) throw e;
+        // show result here
+        console.log(`New department added: ${department_name}`); // display new department's id as well
+        backMenu();
+        });
+}
+
 
 // INIT function
 function init(){
     //mysql connection
     connection.connect((error) => {
         if(error) throw error;
-        console.log('connected!')
         console.log('Welcome to Employee Tracker');
         mainMenu();
-    });
-    
-    //connection.end(); 
+    }); 
 }
 
 init();
-
