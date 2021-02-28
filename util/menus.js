@@ -3,7 +3,7 @@ const mysql = require('mysql');
 const {createEmployee, createRole, createDepartment} = require('./create');
 const {deleteEmployee, deleteRole, deleteDepartment} = require('./delete');
 const {viewEmployees, viewRoles, viewDepartments} = require('./view');
-const {updateEmployeeRole} = require('./update');
+const {updateRole} = require('./update');
 
 
 let connection = mysql.createConnection({
@@ -177,7 +177,7 @@ function updateMenu(){
         ]) .then((data) => {
             switch (data.updateChoice){
                 case "Update an employee's role":
-                    updateEmployeeRole()
+                    updateRole()
                     break;
                 case 'Update a role':
                     console.log('Update a role.');

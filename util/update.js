@@ -30,7 +30,7 @@ function getRoles() {
     return options
 }
 
-function getEmployee(){
+function updateEmployeeRole(){
     inquirer
         .prompt([
             {
@@ -82,10 +82,10 @@ function getEmployee(){
             });
 }
 
-function updateEmployeeRole(){
+function updateRole(){
     getRoles();
-    getEmployee();  
+    updateEmployeeRole();  
 }
 
 
-exports.updateEmployeeRole = updateEmployeeRole;
+exports.updateRole = updateRole;
