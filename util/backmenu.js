@@ -21,7 +21,7 @@ function backMenu(connection){
             case 'Exit':
                 console.log('Good-bye!');
                 connection.end(); 
-                process.end();
+                return
         }
     });
 }
