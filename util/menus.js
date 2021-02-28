@@ -2,6 +2,7 @@ const inquirer = require('inquirer');
 const mysql = require('mysql');
 const {createEmployee, createRole, createDepartment} = require('./create');
 const {deleteEmployee, deleteRole, deleteDepartment} = require('./delete');
+const {viewEmployees, viewRoles, viewDepartments} = require('./view');
 
 
 let connection = mysql.createConnection({
@@ -37,9 +38,9 @@ function mainMenu(){
                     deleteMenu();
                     break;
                 case 'Exit':
+                    connection.end();
                     console.log('Good-bye!');
-                    connection.end(); 
-                    break;
+                    process.exit();
             }
         });
 }
@@ -147,13 +148,13 @@ function viewMenu(){
         ]) .then((data) => {
             switch (data.viewChoice){
                 case 'View all employees':
-                    console.log('View all employees.');
+                    viewEmployees();
                     break;
                 case 'View all roles':
-                    console.log('View all roles.');
+                    viewRoles();
                     break;
                 case 'View all departments':
-                    console.log('View all departments.');
+                    viewDepartments();
                     break;
                 case '<--Back to main menu':
                     mainMenu();
