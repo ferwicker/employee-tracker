@@ -1,7 +1,7 @@
 # Employee Tracker
 Welcome! This CLI application will help you easily manage an employee database through a simple interface.
 
-[See a walkthrough video of the application]()
+[See a walkthrough video of the application](https://youtu.be/sATfZnf-reg)
 
 ## Table of contents
   - [Motivation](#motivation)
@@ -15,7 +15,7 @@ Manage a MySQL database to keep track of employees' details easily with a simple
 ## Features
 Using inquirer and mysql on node to interact with the user and perform changes to the database, this application allows you to create, view, update and delete records for a company's departments, roles and employee details. 
 
-### [See a walkthrough video of the application]()
+### [See a walkthrough video of the application](https://youtu.be/sATfZnf-reg)
 
 ## Installation
 After downloading the package, run the `schema.sql` and `seed.sql` files included, and install the necessary dependencies by navigating to the application folder in your terminal and running `npm install`. Now you are ready, start the application from the folder using `node index.js` command.
