@@ -249,11 +249,11 @@ function deleteMenu(){
                         });
                     break;
                 case 'Delete a role':
-                    getRoles();
+                    //getRoles();
                     deleteRole();
                     break;
                 case 'Delete a department':
-                    getDepartments();
+                    //getDepartments();
                     deleteDepartment();
                     break;
                 case '<--Back to main menu':
